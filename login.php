@@ -1,5 +1,6 @@
 <?php
 session_start();
+ob_start();
 ?>
 <!doctype html>
 <html lang="en">
@@ -61,12 +62,13 @@ session_start();
             $_SESSION['name'] = $email_pass['name'];
             $pass_decode = password_verify($password, $db_pass);
             if ($pass_decode) {
-                echo "login succesfull";
-    ?>
-                <script>
-                    location.replace("home.php");
-                </script>
-    <?php
+                if (isset($_POST['remember'])) {
+                    setcookie('emailcookie', $email, time() + 86400);
+                    setcookie('passwordcookie', $password, time() + 86400);
+                    header('location:home.php');
+                } else {
+                    header('location:home.php');
+                }
             } else {
                 echo "password incorrect";
             }
@@ -118,10 +120,22 @@ session_start();
                     </p>
                 </div>
                 <div class="mb-3">
-                    <input placeholder="Email address" type="email" name="email" class="form-control" id="email" required>
+                    <input placeholder="Email address" type="email" name="email" class="form-control" id="email" required value="<?php
+                                                                                                                                    if (isset($_COOKIE['emailcookie'])) {
+                                                                                                                                        echo $_COOKIE['emailcookie'];
+                                                                                                                                    }
+                                                                                                                                    ?>">
                 </div>
                 <div class="mb-3">
-                    <input placeholder="password" type="password" name="password" class="form-control" id="password" required>
+                    <input placeholder="password" type="password" name="password" class="form-control" id="password" required value="<?php
+                                                                                                                                        if (isset($_COOKIE['passwordcookie'])) {
+                                                                                                                                            echo $_COOKIE['passwordcookie'];
+                                                                                                                                        }
+                                                                                                                                        ?>">
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="checkbox">
+                    <label class="form-check-label" for="exampleCheck1">Remember Me</label>
                 </div>
                 <button type="submit" name="submit" class="btn btn-primary">Login Now</button>
                 <br>
