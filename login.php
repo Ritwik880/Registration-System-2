@@ -13,7 +13,7 @@ session_start();
 
 
     <title>Hello, world!</title>
-    <?php include './links/links.php' ?>
+    <?php include './links/link.php' ?>
     <style>
         .main {
             background-color: silver;
@@ -46,7 +46,7 @@ session_start();
 
 <body>
     <?php
-    include './dbconnect.php';
+    include './db/dbconnect.php';
     if (isset($_POST['submit'])) {
         $email = $_POST['email'];
         $password = $_POST['password'];
@@ -121,7 +121,7 @@ session_start();
                     <input placeholder="Email address" type="email" name="email" class="form-control" id="email" required>
                 </div>
                 <div class="mb-3">
-                    < input placeholder="password" type="password" name="password" class="form-control" id="password" required>
+                    <input placeholder="password" type="password" name="password" class="form-control" id="password" required>
                 </div>
                 <button type="submit" name="submit" class="btn btn-primary">Login Now</button>
                 <br>
