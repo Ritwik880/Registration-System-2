@@ -109,12 +109,12 @@ session_start();
                 <h5>OR</h5>
                 <div>
                     <p class="bg-success text-white px-4"><?php
-                    if(isset($_SESSION['msg'])){
-                        echo $_SESSION['msg'];
-                    }else{
-                        echo $_SESSION['msg'] = "You are logged out. Please login again";
-                    }
-                    ?>
+                                                            if (isset($_SESSION['msg'])) {
+                                                                echo $_SESSION['msg'];
+                                                            } else {
+                                                                echo $_SESSION['msg'] = "You are logged out. Please login again";
+                                                            }
+                                                            ?>
                     </p>
                 </div>
                 <div class="mb-3">
@@ -124,6 +124,8 @@ session_start();
                     <input placeholder="password" type="password" name="password" class="form-control" id="password" required>
                 </div>
                 <button type="submit" name="submit" class="btn btn-primary">Login Now</button>
+                <br>
+                <span style="font-weight: bold;" class="my-3" class="text-centre">Forgot your password No Worry?<a href="./recover.php">Click here</a></span>
                 <br>
                 <span style="font-weight: bold;" class="my-3">Not Have an account?</span>
                 <a class="btn1" style="font-weight: bold;" href="./registration.php">SignUp Now</a>

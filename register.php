@@ -56,9 +56,9 @@ session_start();
         $password = mysqli_real_escape_string($conn, $_POST['password']);
         $cpassword = mysqli_real_escape_string($conn, $_POST['cpassword']);
 
-        $password = password_hash($password, PASSWORD_BCRYPT);
+        $pass = password_hash($password, PASSWORD_BCRYPT);
 
-        $cpassword = password_hash($cpassword, PASSWORD_BCRYPT);
+        $cpass = password_hash($cpassword, PASSWORD_BCRYPT);
 
         $token = bin2hex(random_bytes(15));
 
